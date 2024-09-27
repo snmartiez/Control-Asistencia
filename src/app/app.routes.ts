@@ -14,13 +14,13 @@ export const routes: Routes = [
     { path: 'login', title: 'login', component: LoginComponent },
     { path: 'home', component: HomeComponent, 
         children: [
-        { path: 'profesor', title: 'Profesores', component: ProfesoresComponent },
-        { path: 'estudiante', title: 'Estudiantes', component: EstudiantesComponent },
-        { path: 'programa', title: 'Programas académicos', component: ProgramasComponent },
-        { path: 'usuario', title: 'Usuarios', component: UsuariosComponent },
-        { path: 'maestra', title: 'Tabla maestra', component: MaestraComponent,canActivate:[authGuard], data:{roles: ['Profesores','Administrador','Estudiante'] } },
+        { path: 'profesor', title: 'Profesores', component: ProfesoresComponent,canActivate:[authGuard], data:{roles: ['Profesor','Administrador','Estudiante'] } },
+        { path: 'estudiante', title: 'Estudiantes', component: EstudiantesComponent,canActivate:[authGuard], data:{roles: ['Profesor','Administrador','Estudiante'] } },
+        { path: 'programa', title: 'Programas académicos', component: ProgramasComponent,canActivate:[authGuard], data:{roles: ['Profesor','Administrador','Estudiante'] } },
+        { path: 'usuario', title: 'Usuarios', component: UsuariosComponent,canActivate:[authGuard], data:{roles: ['Administrador'] } },
+        { path: 'maestra', title: 'Tabla maestra', component: MaestraComponent,canActivate:[authGuard], data:{roles: ['Profesor','Administrador','Estudiante'] } },
         { path: 'access-denied', title: 'Access denied', component: DeniedComponent },
-        { path: 'inicio', title: 'Principal', component: InicioComponent
+        { path: 'inicio', title: 'Principal', component: InicioComponent,canActivate:[authGuard], data:{roles: ['Profesor','Administrador','Estudiante'] }
     }
     ]},
     { path: '', redirectTo: 'login', pathMatch: 'full' },  // Redirección inicial
